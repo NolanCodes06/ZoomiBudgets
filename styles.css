@@ -1,0 +1,221 @@
+
+/* ==========================================================================
+   Team Umizoomi — Money Rustic Theme + Left-Side Sliding Nav + Parchment Mode
+   Targets starter classes only.
+   ========================================================================== */
+
+/* ---------- Base Theme Variables (Dark Forest) ---------- */
+:root{
+  --bg: #0e1310;
+  --bg-2: #0b100c;
+  --card: #111a14;
+  --ink: #eaf4ec;
+  --muted: #a8b5ac;
+  --stone: #cbbf9f;
+  --border: #223228;
+  --accent: #5ac471;
+  --accent-2: #9ae66e;
+  --gold: #c4a24f;
+
+  --g-surface: linear-gradient(180deg, rgba(17,26,20,.96), rgba(14,22,18,.98));
+  --g-accent: linear-gradient(135deg, rgba(90,196,113,.96), rgba(154,230,110,.92));
+  --g-nav: linear-gradient(180deg, rgba(240,232,215,.10), rgba(240,232,215,.04));
+}
+
+/* ---------- Parchment (Light) Mode Variables ---------- */
+html[data-theme="parchment"]{
+  --bg: #f3efe5;          /* parchment base */
+  --bg-2: #f7f3ea;
+  --card: #fffdf6;
+  --ink: #1a2b21;         /* deep green ink */
+  --muted: #49584f;
+  --stone: #2f3b34;
+  --border: #d8ceb9;
+  --accent: #2e8b57;
+  --accent-2: #46b46a;
+  --gold: #c49b37;
+
+  --g-surface: linear-gradient(180deg, #fffdf8, #f3efe5);
+  --g-accent: linear-gradient(135deg, #46b46a, #8dd98b);
+  --g-nav: linear-gradient(180deg, rgba(210,196,170,.6), rgba(210,196,170,.3));
+}
+
+*{box-sizing:border-box}
+html,body{
+  margin:0; padding:0; min-height:100%;
+  background:
+    radial-gradient(900px 600px at 8% 0%, rgba(154,230,110,.06), transparent 60%),
+    radial-gradient(700px 600px at 100% 10%, rgba(196,162,79,.05), transparent 60%),
+    linear-gradient(0deg, var(--bg-2), var(--bg));
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  line-height: 1.55;
+}
+a{ color: var(--accent); text-decoration: none; }
+.container{ max-width: 1100px; margin: 0 auto; padding: 1rem; }
+
+/* ---------- Header (brand + buttons) ---------- */
+.site-header{
+  position: sticky; top:0; z-index:30;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  background: var(--g-nav), linear-gradient(0deg, rgba(16,24,19,.7), rgba(16,24,19,.7));
+}
+.nav-wrap{ display:flex; align-items:center; justify-content:space-between; gap:.5rem; }
+.brand{
+  font-weight: 800; letter-spacing:.4px;
+  color: var(--ink); text-decoration: none;
+  padding:.45rem .65rem; border-radius:.7rem;
+  background: linear-gradient(135deg, rgba(46,139,87,.18), rgba(196,162,79,.10));
+  border: 1px solid var(--border);
+}
+.menu-btn, .theme-toggle{
+  display:inline-flex; align-items:center; justify-content:center;
+  background: #132019; color: var(--ink);
+  border:1px solid var(--border);
+  width:40px; height:40px; border-radius:10px; cursor:pointer;
+  transition: transform .12s ease, filter .2s ease, box-shadow .2s ease;
+}
+html[data-theme="parchment"] .menu-btn,
+html[data-theme="parchment"] .theme-toggle{ background: #fffaf0; }
+.menu-btn:hover, .theme-toggle:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+
+/* ---------- Left-side Sliding Nav Drawer ---------- */
+/* The .nav is a vertical drawer fixed on the LEFT. It peeks via a handle.
+   On hover OR when body has .drawer-open, it slides fully into view. */
+.nav{
+  position: fixed;
+  top: 80px;               /* just below header */
+  left: 0;
+  height: calc(100vh - 96px);
+  width: 260px;
+  padding: .75rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  background: var(--g-surface);
+  border-right: 1px solid var(--border);
+  box-shadow: 10px 0 30px rgba(0,0,0,.25);
+  transform: translateX(-65%);     /* partially hidden */
+  transition: transform .25s ease;
+  z-index: 25;
+}
+
+/* Peek handle on right edge of drawer */
+.nav::before{
+  content:"";
+  position:absolute; right:-10px; top:42%;
+  width: 16px; height: 64px; border-top-right-radius:12px; border-bottom-right-radius:12px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  box-shadow: 2px 0 8px rgba(0,0,0,.25);
+}
+
+/* Slide fully in on hover OR when .drawer-open set by JS */
+.nav:hover,
+body.drawer-open .nav{ transform: translateX(0); }
+
+.nav-link{
+  padding:.65rem .9rem; border-radius: .9rem;
+  color: var(--muted);
+  border:1px solid transparent;
+  background: rgba(17,26,20,.35);
+  transition: transform .12s ease, box-shadow .2s ease, color .2s ease, background .2s ease;
+}
+.nav-link:hover{
+  color: transparent;
+  background: linear-gradient(45deg, #2e8b57, #9ae66e, #c4a24f);
+  -webkit-background-clip:text; background-clip:text;
+  transform: translateX(2px);
+  box-shadow: 0 4px 18px rgba(154,230,110,.16);
+}
+.nav-link.active{
+  color: var(--ink);
+  background: linear-gradient(135deg, rgba(154,230,110,.16), rgba(196,162,79,.10));
+  border-color: var(--border);
+}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-block; cursor:pointer; user-select:none;
+  padding:.65rem .98rem; border-radius:.95rem;
+  border: 1px solid var(--border);
+  background: #132019; color: var(--ink);
+  transition: transform .12s ease, box-shadow .2s ease, filter .2s ease;
+}
+.btn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+.btn:active{ transform: translateY(0); }
+.btn.primary{
+  background: var(--g-accent); color:#082013; border-color: transparent;
+  box-shadow: 0 8px 22px rgba(90,196,113,.24);
+}
+.btn.subtle{ background:#0f1713; color: var(--muted); }
+html[data-theme="parchment"] .btn.subtle{ background:#fffaf0; color:#2b3a31; }
+
+/* ---------- Cards / Panels ---------- */
+.card, .panel{
+  background: var(--g-surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem; padding: 1rem;
+  box-shadow: 0 10px 28px rgba(0,0,0,.18), inset 0 1px 0 rgba(234,244,235,.05);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.card:hover, .panel:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.28), 0 0 18px rgba(46,139,87,.14);
+}
+.card h3{ margin:0 0 .35rem; color: var(--stone); letter-spacing:.3px; }
+
+/* ---------- Grid ---------- */
+.grid{ display:grid; gap:1rem; }
+.grid.two{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+.grid.three{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+
+/* ---------- Hero / Sections ---------- */
+.hero{ padding:2.25rem 0 1.25rem; }
+.hero h1{ margin:.25rem 0 .5rem; color: var(--stone); }
+.hero p{ color: var(--muted); max-width: 60ch; }
+.hero-actions{ display:flex; gap:.75rem; margin-top:1rem; flex-wrap: wrap; }
+.section h1{ color: var(--stone); }
+
+/* ---------- Forms ---------- */
+label{ display:flex; flex-direction:column; gap:.35rem; margin:.6rem 0; color: var(--stone); }
+input, select{
+  padding:.68rem .8rem; border-radius:.7rem;
+  border:1px solid var(--border);
+  background:#0f1713; color: var(--ink);
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+html[data-theme="parchment"] input,
+html[data-theme="parchment"] select{ background:#fffaf0; color:#1a2b21; }
+input:focus, select:focus{
+  outline:none; border-color:#2e8b57;
+  box-shadow: 0 0 0 3px rgba(46,139,87,.25);
+}
+
+/* ---------- Totals / Stats ---------- */
+.totals .stat{ display:flex; align-items:center; justify-content:space-between; margin:.4rem 0; }
+.totals .remaining strong{ color: var(--accent-2); }
+.stats-list{ list-style:none; margin:0; padding:0; }
+.stats-list li{ display:flex; align-items:center; justify-content:space-between; border-bottom:1px dashed var(--border); padding:.5rem 0; }
+
+/* ---------- Footer ---------- */
+.site-footer{
+  border-top: 1px solid var(--border);
+  margin-top: 2rem; color: var(--muted);
+  background: linear-gradient(0deg, rgba(16,26,20,.92), rgba(12,19,15,.92));
+}
+html[data-theme="parchment"] .site-footer{
+  background: linear-gradient(0deg, #fffdf8, #f4efe3);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 780px){
+  .grid.two{ grid-template-columns:1fr; }
+  .grid.three{ grid-template-columns:1fr; }
+  .nav{
+    top: 72px;
+    height: calc(100vh - 84px);
+    width: 82vw;
+    transform: translateX(-72%);
+  }
+}
