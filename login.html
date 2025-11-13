@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Login • ZoomiBudgets_Beta_V2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <!-- Header + nav -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="logo-mark">$</span>
+        ZoomiBudgets
+      </a>
+      <div class="actions">
+        <div class="user-pill">
+          <span class="dot"></span>
+          <span id="userPill">Guest</span>
+        </div>
+        <button class="icon-btn" onclick="App.toggleTheme()" title="Light / Dark">☼</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="auth-wrap">
+      <div class="panel auth-card">
+        <h2 style="margin-top:0;">Welcome back</h2>
+        <p class="small">
+          Create a local account. All data is stored on this device only –
+          perfect for students practicing budgeting.
+        </p>
+        <form id="login-form">
+          <label>
+            Username
+            <input type="text" name="username" autocomplete="username" required />
+          </label>
+          <label>
+            Password
+            <input type="password" name="password" autocomplete="current-password" required />
+          </label>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem;">
+            <button class="btn primary" type="button" onclick="App.authLogin()">Sign in</button>
+            <button class="btn" type="button" onclick="App.authRegister()">Create account</button>
+          </div>
+          <p id="authMsg" class="small" style="margin-top:.75rem;"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    ZoomiBudgets_Beta_V2 • Local-only student budgeting
+  </footer>
+</body>
+</html>
