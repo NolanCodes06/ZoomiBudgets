@@ -2,58 +2,175 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Dashboard • Umizoomi</title>
+  <title>Dashboard • ZoomiBudgets_Beta_V2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script defer src="js/app.js"></script>
 </head>
 <body>
-<div class="nav-wrap">
-  <a class="brand" href="index.html">Team Umizoomi</a>
-  <div class="actions">
-    <button class="menu-btn" onclick="App.toggleNav()" title="Toggle Menu">☰</button>
-    <button class="theme-toggle" onclick="App.toggleTheme()" title="Toggle Parchment Mode">☼</button>
-  </div>
-</div>
- 
-<header class="site-header">
-  <div class="container nav-wrap">
-    <a class="brand" href="index.html">Team Umizoomi</a>
-    <nav class="nav">
-      <a class="nav-link" href="index.html">Home</a> <a class="nav-link" href="budget.html">Budget</a> <a class="nav-link" href="survey.html">Survey</a> <a class="nav-link active" href="dashboard.html">Dashboard</a> <a class="nav-link" href="about.html">About</a>
-    </nav>
-    <button class="menu-btn" aria-label="Toggle menu" onclick="document.body.classList.toggle('open')">☰</button>
-  </div>
-</header>
-
-  <main class="container">
-    
-<section class="section">
-  <h1>Dashboard</h1>
-  <p>A quick look at your current month.</p>
-  <div class="grid two">
-    <div class="panel">
-      <h2>Category Breakdown</h2>
-      <canvas id="catChart" width="400" height="300" aria-label="Category chart"></canvas>
-    </div>
-    <div class="panel">
-      <h2>Summary</h2>
-      <ul class="stats-list" id="summaryList">
-        <li><span>Income</span><strong id="sumIncome">$0</strong></li>
-        <li><span>Expenses</span><strong id="sumExpenses">$0</strong></li>
-        <li><span>Remaining</span><strong id="sumRemaining">$0</strong></li>
-      </ul>
+  <!-- Header + nav -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="logo-mark">$</span>
+        ZoomiBudgets
+      </a>
       <div class="actions">
-        <button class="btn" onclick="App.exportJSON()">Export JSON</button>
+        <div class="user-pill">
+          <span class="dot"></span>
+          <span id="userPill">Guest</span>
+        </div>
+        <button class="icon-btn" onclick="App.toggleTheme()" title="Light / Dark">☼</button>
+        <button class="icon-btn" onclick="App.toggleNav()" title="Menu">☰</button>
       </div>
     </div>
-  </div>
-</section>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  </header>
 
+  <nav class="nav" aria-label="Primary">
+    <div class="user-card">
+      <div>Signed in as <strong id="drawerUser">Guest</strong></div>
+      <div style="margin-top:.6rem;display:flex;gap:.35rem;flex-wrap:wrap;">
+        <button class="btn subtle" type="button" onclick="App.gotoLogin()">Switch account</button>
+        <button class="btn danger" type="button" onclick="App.logout()">Log out</button>
+      </div>
+    </div>
+    <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link" href="budget.html">Budget & Transactions</a>
+    <a class="nav-link" href="survey.html">Personalized Plan</a>
+    <a class="nav-link active" href="dashboard.html">Dashboard</a>
+    <a class="nav-link" href="about.html">About</a>
+  </nav>
+
+  <main class="container">
+    <section class="section">
+      <h1>Dashboard</h1>
+      <p class="small">
+        This is where budgeting turns into a game: see your spending, score, habits, and goals all in one view.
+      </p>
+
+      <div class="panel">
+        <h2>Overview – <span id="dashMonthLabel"></span></h2>
+        <div class="summary-row">
+          <div class="summary-pill">
+            <span class="label">Income (planned)</span>
+            <strong id="dIncome">$0.00</strong>
+          </div>
+          <div class="summary-pill">
+            <span class="label">Expenses (planned)</span>
+            <strong id="dExpenses">$0.00</strong>
+          </div>
+          <div class="summary-pill">
+            <span class="label">Actual spent</span>
+            <strong id="dActual">$0.00</strong>
+          </div>
+          <div class="summary-pill">
+            <span class="label">Remaining (planned)</span>
+            <strong id="dRemaining">$0.00</strong>
+          </div>
+        </div>
+        <div style="margin-top:.5rem;font-size:.8rem;color:var(--muted);">
+          Net worth: <span id="dNetWorth">$0.00</span>
+        </div>
+        <p class="small" style="margin-top:.4rem;">
+          Month:
+          <input type="month" id="dashMonthInput" style="max-width: 160px;" />
+          <button class="btn subtle" type="button" onclick="App.setDashToCurrentMonth()">Today</button>
+        </p>
+      </div>
+
+      <div class="grid two">
+        <div class="panel">
+          <h2>Spending by category</h2>
+          <canvas id="catChart" width="420" height="320"></canvas>
+          <p class="small" style="margin-top:.5rem;">
+            Change colors under <strong>Budget → Custom categories &amp; colors</strong>.
+          </p>
+        </div>
+        <div class="panel">
+          <h2>Alerts & survey targets</h2>
+          <h3 style="margin-bottom:.2rem;">Spending alerts</h3>
+          <ul id="alertList" class="alert-list"></ul>
+          <h3 style="margin-top:.6rem;margin-bottom:.2rem;">Survey plan</h3>
+          <p class="small" id="dashPlanName">No plan saved yet.</p>
+          <table class="table" id="dashPlanTable">
+            <thead><tr><th>Category</th><th>% of income</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid two">
+        <div class="panel">
+          <h2>Upcoming bills (next 2 weeks)</h2>
+          <table class="table" id="dashBills">
+            <thead><tr><th>Bill</th><th>Date</th><th>Amount</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="panel">
+          <h2>Savings goals snapshot</h2>
+          <table class="table" id="dashGoals">
+            <thead><tr><th>Goal</th><th>Progress</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Your budget score</h2>
+        <p class="small" id="scoreText"></p>
+        <div class="summary-row" style="margin-top:.5rem;">
+          <div class="summary-pill">
+            <span class="label">Score (0–100)</span>
+            <strong id="scoreValue">–</strong>
+          </div>
+          <div class="summary-pill">
+            <span class="label">Days with activity this month</span>
+            <strong id="scoreDays">0</strong>
+          </div>
+          <div class="summary-pill">
+            <span class="label">Transactions this month</span>
+            <strong id="scoreTx">0</strong>
+          </div>
+          <div class="summary-pill">
+            <span class="label">Streak</span>
+            <strong id="scoreStreak">0 days</strong>
+          </div>
+        </div>
+        <p class="small" style="margin-top:.5rem;">
+          Budgeting matters because it turns random stress into choices:
+          instead of “where did my money go?”, you get to say “I told it where to go.”
+        </p>
+      </div>
+
+      <div class="panel">
+        <h2>Daily check-in</h2>
+        <p class="small">
+          Tiny habit, big impact: check in once a day so your money never becomes a mystery again.
+        </p>
+        <div class="checkin-row">
+          <button class="btn primary" type="button" onclick="App.checkinToday(true)">I spent today</button>
+          <button class="btn subtle" type="button" onclick="App.checkinToday(false)">No spending today</button>
+        </div>
+        <div class="checkin-meta">
+          Current streak: <strong id="checkinStreak">0 days</strong><br />
+          Last check-in: <span id="checkinLast">No check-ins yet</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Achievements</h2>
+        <p class="small">
+          These unlock automatically as you build better money habits.
+        </p>
+        <ul id="achievementsList" class="alert-list"></ul>
+      </div>
+    </section>
   </main>
+
   <footer class="site-footer">
-    <div class="container">© 2025 Team Umizoomi • Student Budgeting</div>
+    ZoomiBudgets_Beta_V2 • Keep an eye on the whole picture
   </footer>
 </body>
 </html>
