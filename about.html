@@ -1,34 +1,40 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-accent="green">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>About • Umizoomi</title>
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/styles-v2.css" />
   <script defer src="js/app.js"></script>
+
 </head>
 <body>
-<div class="nav-wrap">
-  <a class="brand" href="index.html">Team Umizoomi</a>
-  <img src="logo.png" alt="Company Logo" width="150" height="auto"> //This is a space of changed code FOLLOW THIS MARKER FOR THE CHANGE IN CODE!!!!!!!!!!!!!!!!
-  <div class="actions">
-    <button class="menu-btn" onclick="App.toggleNav()" title="Toggle Menu">☰</button>
-    <button class="theme-toggle" onclick="App.toggleTheme()" title="Toggle Parchment Mode">☼</button>
-  </div>
-</div>
 
 <header class="site-header">
   <div class="container nav-wrap">
     <a class="brand" href="index.html">Team Umizoomi</a>
-    <nav class="nav">
-      <a class="nav-link" href="index.html">Home</a> <a class="nav-link" href="budget.html">Budget</a> <a class="nav-link" href="survey.html">Survey</a> <a class="nav-link" href="dashboard.html">Dashboard</a> <a class="nav-link active" href="about.html">About</a>
-    </nav>
-    <button class="menu-btn" aria-label="Toggle menu" onclick="document.body.classList.toggle('open')">☰</button>
+    <div class="actions">
+      <div class="palette" title="Accent">
+        <button class="swatch green" onclick="App.setAccent('green')" aria-label="Green"></button>
+        <button class="swatch teal" onclick="App.setAccent('teal')" aria-label="Teal"></button>
+        <button class="swatch gold" onclick="App.setAccent('gold')" aria-label="Gold"></button>
+        <button class="swatch violet" onclick="App.setAccent('violet')" aria-label="Violet"></button>
+      </div>
+      <button class="icon-btn" onclick="App.toggleTheme()" title="Toggle Parchment Mode">☼</button>
+      <button class="icon-btn" onclick="App.toggleNav()" title="Toggle Menu">☰</button>
+    </div>
   </div>
 </header>
+<nav class="nav">
+  <a class="nav-link" href="index.html">Home</a>
+  <a class="nav-link" href="budget.html">Budget</a>
+  <a class="nav-link" href="survey.html">Survey</a>
+  <a class="nav-link" href="dashboard.html">Dashboard</a>
+  <a class="nav-link" href="about.html">About</a>
+</nav>
 
   <main class="container">
-    
+
 <section class="section">
   <h1>About</h1>
   <p>Team Umizoomi is building a student budgeting tool to promote financial literacy.</p>
@@ -50,7 +56,7 @@
 
   </main>
   <footer class="site-footer">
-    <div class="container">© 2025 Team Umizoomi • Student Budgeting</div>
+    © 2025 Team Umizoomi • Student Budgeting
   </footer>
 </body>
 </html>
