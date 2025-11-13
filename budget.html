@@ -2,72 +2,224 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Budget • Umizoomi</title>
+  <title>Budget • ZoomiBudgets_Beta_V2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="css/styles.css" />
   <script defer src="js/app.js"></script>
 </head>
 <body>
-<div class="nav-wrap">
-  <a class="brand" href="index.html">Team Umizoomi</a>
-  <div class="actions">
-    <button class="menu-btn" onclick="App.toggleNav()" title="Toggle Menu">☰</button>
-    <button class="theme-toggle" onclick="App.toggleTheme()" title="Toggle Parchment Mode">☼</button>
-  </div>
-</div>
+  <!-- Header + nav -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="logo-mark">$</span>
+        ZoomiBudgets
+      </a>
+      <div class="actions">
+        <div class="user-pill">
+          <span class="dot"></span>
+          <span id="userPill">Guest</span>
+        </div>
+        <button class="icon-btn" onclick="App.toggleTheme()" title="Light / Dark">☼</button>
+        <button class="icon-btn" onclick="App.toggleNav()" title="Menu">☰</button>
+      </div>
+    </div>
+  </header>
 
-<header class="site-header">
-  <div class="container nav-wrap">
-    <a class="brand" href="index.html">Team Umizoomi</a>
-
-    
-    <img src="logo.png" alt="Company Logo" width="150" height="auto">
-    
-    
-    <nav class="nav">
-      <a class="nav-link" href="index.html">Home</a> <a class="nav-link active" href="budget.html">Budget</a> <a class="nav-link" href="survey.html">Survey</a> <a class="nav-link" href="dashboard.html">Dashboard</a> <a class="nav-link" href="about.html">About</a>
-    </nav>
-    <button class="menu-btn" aria-label="Toggle menu" onclick="document.body.classList.toggle('open')">☰</button>
-  </div>
-</header>
+  <nav class="nav" aria-label="Primary">
+    <div class="user-card">
+      <div>Signed in as <strong id="drawerUser">Guest</strong></div>
+      <div style="margin-top:.6rem;display:flex;gap:.35rem;flex-wrap:wrap;">
+        <button class="btn subtle" type="button" onclick="App.gotoLogin()">Switch account</button>
+        <button class="btn danger" type="button" onclick="App.logout()">Log out</button>
+      </div>
+    </div>
+    <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link active" href="budget.html">Budget & Transactions</a>
+    <a class="nav-link" href="survey.html">Personalized Plan</a>
+    <a class="nav-link" href="dashboard.html">Dashboard</a>
+    <a class="nav-link" href="about.html">About</a>
+  </nav>
 
   <main class="container">
-    
-<section class="section">
-  <h1>Budget</h1>
-  <p>Enter income and expenses. Your totals update automatically.</p>
-  <div class="grid two">
-    <form class="panel" id="income-form">
-      <h2>Income</h2>
-      <label>Primary Income <input type="number" step="0.01" name="primary" placeholder="e.g., 1200"></label>
-      <label>Other Income <input type="number" step="0.01" name="other" placeholder="e.g., 300"></label>
-      <button class="btn" type="button" onclick="App.saveIncome()">Save Income</button>
-    </form>
+    <section class="section">
+      <h1>Budget & Transactions</h1>
+      <p class="small">
+        Think of this like a loadout screen: set your income, give every dollar a job,
+        then log what actually happens.
+      </p>
 
-    <form class="panel" id="expense-form">
-      <h2>Expenses</h2>
-      <label>Rent <input type="number" step="0.01" name="rent" placeholder="e.g., 600"></label>
-      <label>Food <input type="number" step="0.01" name="food" placeholder="e.g., 220"></label>
-      <label>Transportation <input type="number" step="0.01" name="transportation" placeholder="e.g., 120"></label>
-      <label>Entertainment <input type="number" step="0.01" name="entertainment" placeholder="e.g., 60"></label>
-      <label>Savings <input type="number" step="0.01" name="savings" placeholder="e.g., 100"></label>
-      <label>Other <input type="number" step="0.01" name="other" placeholder="e.g., 0"></label>
-      <button class="btn" type="button" onclick="App.saveExpenses()">Save Expenses</button>
-    </form>
-  </div>
+      <div class="grid two">
+        <form class="panel" id="income-form">
+          <h2>Monthly income</h2>
+          <label>
+            Primary income
+            <input type="number" step="0.01" name="primary" placeholder="e.g., 1200" />
+          </label>
+          <label>
+            Other income
+            <input type="number" step="0.01" name="other" placeholder="e.g., 300" />
+          </label>
+          <button class="btn primary" type="button" onclick="App.saveIncome()">Save income</button>
+        </form>
 
-  <div class="panel totals" id="totals">
-    <h2>Totals</h2>
-    <div class="stat"><span>Total Income:</span><strong id="totalIncome">$0</strong></div>
-    <div class="stat"><span>Total Expenses:</span><strong id="totalExpenses">$0</strong></div>
-    <div class="stat remaining"><span>Remaining:</span><strong id="remaining">$0</strong></div>
-    <button class="btn subtle" onclick="App.resetData()">Reset Data</button>
-  </div>
-</section>
+        <form class="panel" id="planned-form">
+          <h2>Planned by category</h2>
+          <p class="small">
+            These are your monthly “missions.” The dashboard will compare them to your real spending.
+          </p>
+          <div id="plannedInputs"></div>
+          <button class="btn primary" type="button" onclick="App.savePlanned()">Save planned budget</button>
+        </form>
+      </div>
 
+      <div class="grid two">
+        <div class="panel">
+          <h2>Custom categories & colors</h2>
+          <p class="small">
+            Add new categories and pick colors for the pie chart.
+          </p>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+            <input style="flex:1;" id="newCategoryName" placeholder="New category (e.g., Coffee)" />
+            <button class="btn" type="button" onclick="App.addCategory()">Add</button>
+          </div>
+          <div id="categoryColors" style="margin-top:.6rem;"></div>
+        </div>
+
+        <div class="panel">
+          <h2>Net worth (optional)</h2>
+          <p class="small">Rough snapshot – used for your dashboard overview.</p>
+          <label>
+            Total assets (cash, savings, etc.)
+            <input type="number" step="0.01" id="netAssets" />
+          </label>
+          <label>
+            Total debts (loans, credit cards, etc.)
+            <input type="number" step="0.01" id="netDebts" />
+          </label>
+          <button class="btn" type="button" onclick="App.saveNetWorth()">Save net worth</button>
+        </div>
+      </div>
+
+      <div class="grid two">
+        <div class="panel">
+          <h2>Savings goals</h2>
+          <p class="small">Set what you're saving for and track progress.</p>
+          <div class="grid two">
+            <label>
+              Goal name
+              <input type="text" id="goalName" placeholder="Emergency fund" />
+            </label>
+            <label>
+              Target amount
+              <input type="number" step="0.01" id="goalTarget" placeholder="500" />
+            </label>
+            <label>
+              Current saved
+              <input type="number" step="0.01" id="goalCurrent" placeholder="0" />
+            </label>
+          </div>
+          <button class="btn primary" type="button" onclick="App.addGoal()">Add goal</button>
+          <table class="table" id="goalsTable">
+            <thead><tr><th>Goal</th><th>Progress</th><th></th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <div class="panel">
+          <h2>Bills & reminders</h2>
+          <p class="small">Add recurring bills so the dashboard can warn you ahead of time.</p>
+          <div class="grid two">
+            <label>
+              Bill name
+              <input type="text" id="billName" placeholder="Phone bill" />
+            </label>
+            <label>
+              Amount
+              <input type="number" step="0.01" id="billAmount" placeholder="45" />
+            </label>
+            <label>
+              Day of month (1–31)
+              <input type="number" min="1" max="31" id="billDay" placeholder="15" />
+            </label>
+            <label>
+              Notes (optional)
+              <input type="text" id="billNotes" placeholder="Auto-pay, Wi-Fi, etc." />
+            </label>
+          </div>
+          <button class="btn primary" type="button" onclick="App.addBill()">Add bill</button>
+          <table class="table" id="billsTable">
+            <thead><tr><th>Bill</th><th>When</th><th>Amount</th><th></th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Add transaction</h2>
+        <div class="grid two">
+          <label>
+            Date
+            <input type="date" id="txDate" />
+          </label>
+          <label>
+            Category
+            <select id="txCategory"></select>
+          </label>
+          <label>
+            Amount
+            <input type="number" step="0.01" id="txAmount" placeholder="12.50" />
+          </label>
+          <label>
+            Note (optional)
+            <input type="text" id="txNote" placeholder="Boba with friends" />
+          </label>
+        </div>
+        <button class="btn primary" type="button" onclick="App.addTransaction()">Add</button>
+      </div>
+
+      <div class="panel">
+        <h2>Transactions (this month)</h2>
+        <p class="small">
+          Month: <input type="month" id="monthPicker" style="max-width:160px;" />
+          <button class="btn subtle" type="button" onclick="App.setCurrentMonth()">Today</button>
+        </p>
+        <table class="table" id="txTable">
+          <thead>
+            <tr>
+              <th>Date</th><th>Category</th><th>Note</th><th>Amount</th><th></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="panel">
+        <h2>Planned vs. remaining (this month)</h2>
+        <div class="summary-row">
+          <div class="summary-pill">
+            <span class="label">Income (planned)</span>
+            <strong id="sumIncome">$0.00</strong>
+          </div>
+          <div class="summary-pill">
+            <span class="label">Expenses (planned)</span>
+            <strong id="sumExpenses">$0.00</strong>
+          </div>
+          <div class="summary-pill">
+            <span class="label">Remaining (planned)</span>
+            <strong id="sumRemaining">$0.00</strong>
+          </div>
+          <div class="summary-pill">
+            <span class="label">Actual spent this month</span>
+            <strong id="sumActual">$0.00</strong>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
   <footer class="site-footer">
-    <div class="container">© 2025 Team Umizoomi • Student Budgeting</div>
+    ZoomiBudgets_Beta_V2 • Budget, bills, and goals in one place
   </footer>
 </body>
 </html>
