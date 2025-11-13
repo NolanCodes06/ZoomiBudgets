@@ -2,59 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Home • Umizoomi</title>
+  <title>Home • ZoomiBudgets_Beta_V2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="css/styles.css" />
   <script defer src="js/app.js"></script>
 </head>
 <body>
-<div class="nav-wrap">
-  <a class="brand" href="index.html">Team Umizoomi</a>
-  <div class="actions">
-    <button class="menu-btn" onclick="App.toggleNav()" title="Toggle Menu">☰</button>
-    <button class="theme-toggle" onclick="App.toggleTheme()" title="Toggle Parchment Mode">☼</button>
-  </div>
-</div>
+  <!-- Shared header + nav -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="logo-mark">$</span>
+        ZoomiBudgets
+      </a>
+      <div class="actions">
+        <div class="user-pill">
+          <span class="dot"></span>
+          <span id="userPill">Guest</span>
+        </div>
+        <button class="icon-btn" onclick="App.toggleTheme()" title="Light / Dark">☼</button>
+        <button class="icon-btn" onclick="App.toggleNav()" title="Menu">☰</button>
+      </div>
+    </div>
+  </header>
 
-<header class="site-header">
-  <div class="container nav-wrap">
-    <a class="brand" href="index.html">Team Umizoomi</a>
-    <nav class="nav">
-      <a class="nav-link active" href="index.html">Home</a> <a class="nav-link" href="budget.html">Budget</a> <a class="nav-link" href="survey.html">Survey</a> <a class="nav-link" href="dashboard.html">Dashboard</a> <a class="nav-link" href="about.html">About</a>
-    </nav>
-    <button class="menu-btn" aria-label="Toggle menu" onclick="document.body.classList.toggle('open')">☰</button>
-  </div>
-</header>
+  <nav class="nav" aria-label="Primary">
+    <div class="user-card">
+      <div>Signed in as <strong id="drawerUser">Guest</strong></div>
+      <div style="margin-top:.6rem;display:flex;gap:.35rem;flex-wrap:wrap;">
+        <button class="btn subtle" type="button" onclick="App.gotoLogin()">Switch account</button>
+        <button class="btn danger" type="button" onclick="App.logout()">Log out</button>
+      </div>
+    </div>
+    <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link" href="budget.html">Budget & Transactions</a>
+    <a class="nav-link" href="survey.html">Personalized Plan</a>
+    <a class="nav-link" href="dashboard.html">Dashboard</a>
+    <a class="nav-link" href="about.html">About</a>
+  </nav>
 
   <main class="container">
-    
-<section class="hero">
-  <h1>Student Budgeting, Simplified.</h1>
-  <p>Track spending, get personalized targets, and see your month at a glance.</p>
-  <div class="hero-actions">
-    <a class="btn primary" href="budget.html">Start Budgeting</a>
-    <a class="btn" href="survey.html">Take the Survey</a>
-  </div>
-</section>
+    <section class="hero">
+      <div class="hero-eyebrow">ZoomiBudgets_Beta_V2</div>
+      <h1>Give every dollar a job – before it disappears.</h1>
+      <p>
+        Track your spending, bills, and goals in one place. No banks, no servers –
+        just a clear view of where your money goes each month.
+      </p>
+      <div class="hero-actions">
+        <a class="btn primary" href="budget.html">Start with your budget</a>
+        <a class="btn" href="survey.html">Take the deeper survey</a>
+        <a class="btn subtle" href="dashboard.html">Jump to dashboard</a>
+      </div>
+    </section>
 
-<section class="grid three">
-  <article class="card">
-    <h3>Track</h3>
-    <p>Add income and expenses by category with instant totals.</p>
-  </article>
-  <article class="card">
-    <h3>Personalize</h3>
-    <p>Survey recommends percentage targets that fit your lifestyle.</p>
-  </article>
-  <article class="card">
-    <h3>Visualize</h3>
-    <p>Charts help you see where money goes and what to tweak.</p>
-  </article>
-</section>
-
+    <section class="grid three">
+      <article class="card">
+        <h3>1. Create your plan</h3>
+        <p>Use the personalized survey to get target percentages for rent, food, savings, and more.</p>
+      </article>
+      <article class="card">
+        <h3>2. Log bills & expenses</h3>
+        <p>Add recurring bills, record daily spending, and keep everything inside one student account.</p>
+      </article>
+      <article class="card">
+        <h3>3. Track goals & alerts</h3>
+        <p>See when you’re close to overspending and how far you’ve come on savings goals.</p>
+      </article>
+    </section>
   </main>
+
   <footer class="site-footer">
-    <div class="container">© 2025 Team Umizoomi • Student Budgeting</div>
+    ZoomiBudgets_Beta_V2 • Practice budgeting before the real world hits
   </footer>
 </body>
 </html>
