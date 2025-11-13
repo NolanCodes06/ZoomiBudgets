@@ -2,70 +2,142 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Survey • Umizoomi</title>
+  <title>Personalized Plan • ZoomiBudgets_Beta_V2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="css/styles.css" />
   <script defer src="js/app.js"></script>
 </head>
 <body>
-<div class="nav-wrap">
-  <a class="brand" href="index.html">Team Umizoomi</a>
-  <div class="actions">
-    <button class="menu-btn" onclick="App.toggleNav()" title="Toggle Menu">☰</button>
-    <button class="theme-toggle" onclick="App.toggleTheme()" title="Toggle Parchment Mode">☼</button>
-  </div>
-</div>
+  <!-- Header + nav -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="logo-mark">$</span>
+        ZoomiBudgets
+      </a>
+      <div class="actions">
+        <div class="user-pill">
+          <span class="dot"></span>
+          <span id="userPill">Guest</span>
+        </div>
+        <button class="icon-btn" onclick="App.toggleTheme()" title="Light / Dark">☼</button>
+        <button class="icon-btn" onclick="App.toggleNav()" title="Menu">☰</button>
+      </div>
+    </div>
+  </header>
 
-<header class="site-header">
-  <div class="container nav-wrap">
-    <a class="brand" href="index.html">Team Umizoomi</a>
-    <nav class="nav">
-      <a class="nav-link" href="index.html">Home</a> <a class="nav-link" href="budget.html">Budget</a> <a class="nav-link active" href="survey.html">Survey</a> <a class="nav-link" href="dashboard.html">Dashboard</a> <a class="nav-link" href="about.html">About</a>
-    </nav>
-    <button class="menu-btn" aria-label="Toggle menu" onclick="document.body.classList.toggle('open')">☰</button>
-  </div>
-</header>
+  <nav class="nav" aria-label="Primary">
+    <div class="user-card">
+      <div>Signed in as <strong id="drawerUser">Guest</strong></div>
+      <div style="margin-top:.6rem;display:flex;gap:.35rem;flex-wrap:wrap;">
+        <button class="btn subtle" type="button" onclick="App.gotoLogin()">Switch account</button>
+        <button class="btn danger" type="button" onclick="App.logout()">Log out</button>
+      </div>
+    </div>
+    <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link" href="budget.html">Budget & Transactions</a>
+    <a class="nav-link active" href="survey.html">Personalized Plan</a>
+    <a class="nav-link" href="dashboard.html">Dashboard</a>
+    <a class="nav-link" href="about.html">About</a>
+  </nav>
 
   <main class="container">
-    
-<section class="section">
-  <h1>Budget Survey</h1>
-  <p>Answer a few questions to get a recommended budget plan.</p>
-  <form class="panel" id="survey-form">
-    <label>1) Savings priority?
-      <select name="savings">
-        <option value="high">High</option>
-        <option value="medium">Medium</option>
-        <option value="low">Low</option>
-      </select>
-    </label>
-    <label>2) Housing cost relative to income?
-      <select name="housing">
-        <option value="low">&lt; 25%</option>
-        <option value="medium">25–35%</option>
-        <option value="high">&gt; 35%</option>
-      </select>
-    </label>
-    <label>3) Lifestyle spending (eating out, fun)?
-      <select name="lifestyle">
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
-      </select>
-    </label>
-    <button class="btn primary" type="button" onclick="App.scoreSurvey()">Get Plan</button>
-  </form>
+    <section class="section">
+      <h1>Personalized Budget Survey</h1>
+      <p class="small">
+        Answer a few questions about your life right now. We’ll build a plan that feels realistic,
+        then show you where you can save without wrecking your mental health.
+      </p>
 
-  <div class="panel" id="plan-result" hidden>
-    <h2>Recommended Plan</h2>
-    <p id="plan-name">—</p>
-    <ul id="plan-targets" class="targets"></ul>
-  </div>
-</section>
+      <form class="panel" id="survey-form">
+        <h2>Your situation</h2>
+        <label>
+          1) Where are you living right now?
+          <select name="housingType">
+            <option value="dorm">Dorm / on-campus housing</option>
+            <option value="withFamily">With family</option>
+            <option value="shared">Shared apartment / roommates</option>
+            <option value="solo">Living alone</option>
+          </select>
+        </label>
 
+        <label>
+          2) Work situation
+          <select name="workType">
+            <option value="none">Not working</option>
+            <option value="part">Part-time job</option>
+            <option value="full">Full-time while in school</option>
+          </select>
+        </label>
+
+        <label>
+          3) Savings priority
+          <select name="savingsPriority">
+            <option value="high">Very high – I want a strong cushion</option>
+            <option value="medium">Medium – I want some savings but not everything</option>
+            <option value="low">Low – I’m focused on just surviving</option>
+          </select>
+        </label>
+
+        <label>
+          4) Debt & obligations (loans, cards, etc.)
+          <select name="debtLevel">
+            <option value="none">None / very low</option>
+            <option value="some">Some, manageable</option>
+            <option value="heavy">Heavy – stressing me out</option>
+          </select>
+        </label>
+
+        <label>
+          5) Eating & social life
+          <select name="lifestyle">
+            <option value="frugal">Very frugal – I mostly eat at home</option>
+            <option value="mixed">Mixed – some eating out, some at home</option>
+            <option value="social">Very social – I go out a lot</option>
+          </select>
+        </label>
+
+        <label>
+          6) Mental health & self-care
+          <select name="selfCare">
+            <option value="low">Low – I don’t spend much on self-care</option>
+            <option value="medium">Medium – I spend occasionally</option>
+            <option value="high">High – self-care is non-negotiable</option>
+          </select>
+        </label>
+
+        <label>
+          Anything else we should consider? (optional)
+          <textarea name="notes" rows="3" placeholder="Scholarships, unique expenses, etc."></textarea>
+        </label>
+
+        <button class="btn primary" type="button" onclick="App.saveSurvey()">Save plan from survey</button>
+      </form>
+
+      <div class="panel" id="surveyResult" hidden>
+        <h2>Recommended plan</h2>
+        <p class="small" id="planName"></p>
+        <table class="table" id="planTable">
+          <thead><tr><th>Category</th><th>% of income</th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <p class="small" id="planNotes" style="margin-top:.6rem;"></p>
+
+        <h3 style="margin-top:1rem;">Where you could save more</h3>
+        <ul id="planTips" class="alert-list"></ul>
+
+        <p class="small" style="margin-top:1rem;">
+          Next step:
+          <a href="budget.html" class="btn subtle">Apply this to your budget</a>
+          or
+          <a href="dashboard.html" class="btn subtle">see it on your dashboard</a>.
+        </p>
+      </div>
+    </section>
   </main>
+
   <footer class="site-footer">
-    <div class="container">© 2025 Team Umizoomi • Student Budgeting</div>
+    ZoomiBudgets_Beta_V2 • Personalized plan saved to your account
   </footer>
 </body>
 </html>
