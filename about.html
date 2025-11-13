@@ -2,55 +2,151 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>About • Umizoomi</title>
+  <title>About • ZoomiBudgets_Beta_V2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="css/styles.css" />
   <script defer src="js/app.js"></script>
 </head>
 <body>
-<div class="nav-wrap">
-  <a class="brand" href="index.html">Team Umizoomi</a>
-  <img src="logo.png" alt="Company Logo" width="150" height="auto"> //This is a space of changed code FOLLOW THIS MARKER FOR THE CHANGE IN CODE!!!!!!!!!!!!!!!!
-  <div class="actions">
-    <button class="menu-btn" onclick="App.toggleNav()" title="Toggle Menu">☰</button>
-    <button class="theme-toggle" onclick="App.toggleTheme()" title="Toggle Parchment Mode">☼</button>
-  </div>
-</div>
+  <!-- Header + nav -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="logo-mark">$</span>
+        ZoomiBudgets
+      </a>
+      <div class="actions">
+        <div class="user-pill">
+          <span class="dot"></span>
+          <span id="userPill">Guest</span>
+        </div>
+        <button class="icon-btn" onclick="App.toggleTheme()" title="Light / Dark">☼</button>
+        <button class="icon-btn" onclick="App.toggleNav()" title="Menu">☰</button>
+      </div>
+    </div>
+  </header>
 
-<header class="site-header">
-  <div class="container nav-wrap">
-    <a class="brand" href="index.html">Team Umizoomi</a>
-    <nav class="nav">
-      <a class="nav-link" href="index.html">Home</a> <a class="nav-link" href="budget.html">Budget</a> <a class="nav-link" href="survey.html">Survey</a> <a class="nav-link" href="dashboard.html">Dashboard</a> <a class="nav-link active" href="about.html">About</a>
-    </nav>
-    <button class="menu-btn" aria-label="Toggle menu" onclick="document.body.classList.toggle('open')">☰</button>
-  </div>
-</header>
+  <nav class="nav" aria-label="Primary">
+    <div class="user-card">
+      <div>Signed in as <strong id="drawerUser">Guest</strong></div>
+      <div style="margin-top:.6rem;display:flex;gap:.35rem;flex-wrap:wrap;">
+        <button class="btn subtle" type="button" onclick="App.gotoLogin()">Switch account</button>
+        <button class="btn danger" type="button" onclick="App.logout()">Log out</button>
+      </div>
+    </div>
+    <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link" href="budget.html">Budget & Transactions</a>
+    <a class="nav-link" href="survey.html">Personalized Plan</a>
+    <a class="nav-link" href="dashboard.html">Dashboard</a>
+    <a class="nav-link active" href="about.html">About</a>
+  </nav>
 
   <main class="container">
-    
-<section class="section">
-  <h1>About</h1>
-  <p>Team Umizoomi is building a student budgeting tool to promote financial literacy.</p>
-  <div class="grid three">
-    <article class="card">
-      <h3>Simple</h3>
-      <p>Clear categories, quick inputs, instant totals.</p>
-    </article>
-    <article class="card">
-      <h3>Personal</h3>
-      <p>Survey-based targets adapt to your situation.</p>
-    </article>
-    <article class="card">
-      <h3>Visual</h3>
-      <p>Charts help you spot trends and improve month by month.</p>
-    </article>
-  </div>
-</section>
+    <section class="section">
+      <h1>About ZoomiBudgets_Beta_V2</h1>
+      <div class="grid three">
+        <article class="card">
+          <h3>Student-first</h3>
+          <p>
+            Designed for students practicing real-world money skills: budgets, bills, and saving for
+            stuff that actually matters.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Local only</h3>
+          <p>
+            All data is stored in your browser's localStorage. No banking connections and no server –
+            just your laptop, your numbers, and your habits.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Future-ready</h3>
+          <p>
+            The same structure can later plug into a real database or bank APIs. For now, it's a safe
+            sandbox to learn without risking real accounts.
+          </p>
+        </article>
+      </div>
 
+      <div class="panel" style="margin-top:1.5rem;">
+        <h2>Why budgeting matters</h2>
+        <p class="small">
+          Budgeting isn’t about being perfect. It’s about giving every dollar a job
+          <em>before</em> it disappears. When you know what’s coming in and where it’s going:
+        </p>
+        <ul class="alert-list">
+          <li>You catch money leaks (impulse food, random subscriptions) before they snowball.</li>
+          <li>You notice when bills or debt are crowding out everything else.</li>
+          <li>You can carve out a savings cushion, even if it’s tiny at first.</li>
+          <li>You stop “guessing” if you can afford something – the numbers tell you.</li>
+        </ul>
+        <p class="small" style="margin-top:.6rem;">
+          ZoomiBudgets is built so budgeting feels less like a punishment and more like a game:
+          colorful charts, a score, goals to level up, and clear feedback. The point isn’t to never
+          spend – it’s to spend <strong>on purpose</strong>.
+        </p>
+      </div>
+
+      <div class="panel" style="margin-top:1.5rem;">
+        <h2>Export / import (for class & collaboration)</h2>
+        <p class="small">
+          Use this to share your budget with teammates or submit a data file for a class project.
+          Everything stays in JSON, and nothing leaves your device unless <em>you</em> choose to export it.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;">
+          <button class="btn" type="button" onclick="App.exportData()">Export my data</button>
+          <button class="btn subtle" type="button" onclick="document.getElementById('importFile').click()">
+            Import data from file
+          </button>
+          <span class="badge">Beta feature</span>
+        </div>
+        <input type="file" id="importFile" accept="application/json" style="display:none;" />
+        <p class="small" style="margin-top:.5rem;">
+          Tip: You can export your data, wipe it, and then re-import later to simulate “cloud sync”
+          in a classroom setting.
+        </p>
+      </div>
+
+      <div class="panel" style="margin-top:1.5rem;">
+        <h2>UTSA Aid Hub (mockup / coming soon)</h2>
+        <p class="small">
+          This section is a mockup of how ZoomiBudgets could eventually connect your everyday money
+          tracking with the support UTSA already offers – grants, scholarships, and financial aid.
+        </p>
+        <div class="grid two">
+          <article class="card">
+            <h3>FAFSA / TASFA guidance</h3>
+            <p class="small">
+              A future version could show deadlines, reminders, and links to the correct UTSA pages
+              for FAFSA / TASFA, so you don’t miss key dates.
+            </p>
+            <p class="small">
+              <strong>Mock button:</strong><br />
+              <button class="btn subtle" type="button" disabled>Open UTSA Aid Checklist (coming soon)</button>
+            </p>
+          </article>
+          <article class="card">
+            <h3>Grants & scholarships</h3>
+            <p class="small">
+              Imagine seeing your budget, then tapping one button to jump to UTSA Scholarship Hub or
+              One Stop for current opportunities.
+            </p>
+            <p class="small">
+              <strong>Mock button:</strong><br />
+              <button class="btn subtle" type="button" disabled>Search UTSA Scholarships (coming soon)</button>
+            </p>
+          </article>
+        </div>
+        <p class="small" style="margin-top:.6rem;">
+          Right now this is <strong>visual only</strong> – there is no live connection to UTSA’s systems.
+          It’s here to show how a future production app could blend budgeting with real financial aid.
+        </p>
+      </div>
+    </section>
   </main>
+
   <footer class="site-footer">
-    <div class="container">© 2025 Team Umizoomi • Student Budgeting</div>
+    ZoomiBudgets_Beta_V2 • Built to teach habits, not chase perfection
   </footer>
 </body>
 </html>
