@@ -1,5 +1,7 @@
 # ZoomiBudgets
 
+Live demo: https://nolancodes06.github.io/ZoomiBudgets/
+
 A budgeting app for students that runs entirely in your browser. No server, no
 database, no bank connections. Everything saves to localStorage on your own
 machine.
