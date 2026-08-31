@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZoomiBudgets • Home</title>
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <div class="app-shell">
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="topbar-left">
+<div class="brand-mark">
+  <img src="assets/logo.png" alt="ZoomiBudgets logo" class="brand-logo" />
+</div>
+<div class="brand-title">
+  <div class="brand-title-main">ZoomiBudgets</div>
+          <div class="brand-title-sub">College Budget Companion</div>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <button class="menu-toggle">
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside id="sidebar"></aside>
+
+    <!-- Page Content -->
+    <main class="app-main">
+      <div class="page">
+
+        <div class="page-header">
+          <div class="page-kicker">Welcome</div>
+          <h1 class="page-title">Home</h1>
+          <p class="subtitle" id="homeTip"></p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-label">Daily Wellness</div>
+              <div class="card-title">Daily Money Check-In</div>
+            </div>
+          </div>
+
+          <label>Your stress level (1-5)</label>
+          <input type="number" min="1" max="5" id="checkinStress" placeholder="3" />
+
+          <label>Notes (optional)</label>
+          <textarea id="checkinNote" placeholder="How are you feeling about money today?"></textarea>
+
+          <button class="btn primary" id="checkinSaveBtn">Save Check-In</button>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="js/app.js" defer></script>
+</body>
+</html>

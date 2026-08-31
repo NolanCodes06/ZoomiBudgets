@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZoomiBudgets • Budget</title>
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+
+    <header class="topbar">
+      <div class="topbar-left">
+<div class="brand-mark">
+  <img src="assets/logo.png" alt="ZoomiBudgets logo" class="brand-logo" />
+</div>
+<div class="brand-title">
+  <div class="brand-title-main">ZoomiBudgets</div>
+          <div class="brand-title-sub">Budget</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="menu-toggle">
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <aside id="sidebar"></aside>
+
+    <main class="app-main">
+      <div class="page">
+
+        <div class="page-header">
+          <div class="page-kicker">Plan</div>
+          <h1 class="page-title">Monthly Budget</h1>
+          <p class="subtitle" id="budgetTip"></p>
+        </div>
+
+        <!-- Planned budget -->
+        <section class="section card">
+          <div class="card-header">
+            <div>
+              <div class="card-label">Plan First</div>
+              <div class="card-title">Assign a Dollar to Each Job</div>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div>
+              <label>Category</label>
+              <input list="categoryOptions" id="planCategory" placeholder="e.g., Food" />
+              <datalist id="categoryOptions"></datalist>
+            </div>
+
+            <div>
+              <label>Planned Amount</label>
+              <input type="number" id="planAmount" placeholder="e.g., 250" />
+            </div>
+
+            <div>
+              <button class="btn primary" id="planAddBtn" type="button">Add / Update Plan</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Log expenses -->
+        <section class="section card">
+          <div class="card-header">
+            <div>
+              <div class="card-label">Reality</div>
+              <div class="card-title">Log an Expense</div>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div>
+              <label>Choose existing category</label>
+              <select id="txCategorySelect">
+                <option value="">Select category...</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Or type a new category</label>
+              <input type="text" id="txCategory" placeholder="Custom category" />
+            </div>
+
+            <div>
+              <label>Amount</label>
+              <input type="number" id="txAmount" placeholder="e.g., 18.50" />
+            </div>
+
+            <div>
+              <label>Description (optional)</label>
+              <input type="text" id="txName" placeholder="e.g., Taco Bell" />
+            </div>
+
+            <div>
+              <label>Date</label>
+              <input type="date" id="txDate" />
+            </div>
+
+            <div>
+              <label>Type</label>
+              <div style="display:flex;gap:.4rem;flex-wrap:wrap;">
+                <label><input type="radio" name="tagType" id="tagNeed" /> Need</label>
+                <label><input type="radio" name="tagType" id="tagWant" /> Want</label>
+                <label><input type="radio" name="tagType" id="tagMixed" /> Mixed</label>
+              </div>
+            </div>
+
+            <div>
+              <button class="btn primary" id="txAddBtn" type="button">Add Expense</button>
+            </div>
+
+            <div>
+              <button class="btn subtle" id="undoTxBtn" type="button">Undo Last Expense</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Summary -->
+        <section class="section card">
+          <div class="card-header">
+            <div>
+              <div class="card-label">Compare</div>
+              <div class="card-title">Planned vs Actual by Category</div>
+            </div>
+          </div>
+
+          <div id="budgetSummary"></div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="js/app.js" defer></script>
+</body>
+</html>

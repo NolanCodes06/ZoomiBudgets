@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZoomiBudgets • Subscriptions</title>
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+
+    <header class="topbar">
+      <div class="topbar-left">
+<div class="brand-mark">
+  <img src="assets/logo.png" alt="ZoomiBudgets logo" class="brand-logo" />
+</div>
+<div class="brand-title">
+  <div class="brand-title-main">ZoomiBudgets</div>          <div class="brand-title-sub">Subscriptions</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="menu-toggle">
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <aside id="sidebar"></aside>
+
+    <main class="app-main">
+      <div class="page">
+
+        <div class="page-header">
+          <div class="page-kicker">Recurring</div>
+          <h1 class="page-title">Subscription Manager</h1>
+          <p class="subtitle" id="subsTip"></p>
+        </div>
+
+        <section class="section card">
+          <div class="card-header">
+            <div>
+              <div class="card-label">Add Subscription</div>
+              <div class="card-title">Track Streaming, Apps & More</div>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div>
+              <label>Name</label>
+              <input type="text" id="subName" placeholder="e.g., Spotify" />
+            </div>
+            <div>
+              <label>Cost</label>
+              <input type="number" id="subCost" placeholder="e.g., 9.99" />
+            </div>
+            <div>
+              <label>Billing Cycle</label>
+              <select id="subCycle">
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+                <option value="semester">Per Semester</option>
+              </select>
+            </div>
+            <div>
+              <label>Next Renewal Date (optional)</label>
+              <input type="date" id="subRenew" />
+            </div>
+            <div>
+              <button class="btn primary" id="addSubBtn" type="button">
+                Add Subscription
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="section card">
+          <div class="card-header">
+            <div>
+              <div class="card-label">Overview</div>
+              <div class="card-title">Your Subscriptions</div>
+            </div>
+          </div>
+          <div id="subscriptions-list"></div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="js/app.js" defer></script>
+</body>
+</html>

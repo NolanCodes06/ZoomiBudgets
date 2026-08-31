@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZoomiBudgets • Login</title>
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <div class="app-shell">
+
+    <header class="topbar">
+      <div class="topbar-left">
+<div class="brand-mark">
+  <img src="assets/logo.png" alt="ZoomiBudgets logo" class="brand-logo" />
+</div>
+<div class="brand-title">
+  <div class="brand-title-main">ZoomiBudgets</div>
+          <div class="brand-title-sub">Sign In</div>
+        </div>
+      </div>
+    </header>
+
+    <main class="login-wrapper">
+      <div class="login-card">
+        <h2 style="margin-top:0;">Welcome Back</h2>
+        <p class="subtitle">Sign in or create your account</p>
+
+        <div id="authMsg" class="subtitle" style="margin:.4rem 0;"></div>
+
+        <form id="login-form">
+
+          <label>Username</label>
+          <input type="text" name="username" placeholder="e.g., nolan" />
+
+          <label>Password</label>
+          <input type="password" name="password" />
+
+          <div style="margin-top:1rem;display:flex;flex-direction:column;gap:.4rem;">
+            <button type="button" class="btn primary" id="loginBtn">Sign In</button>
+            <button type="button" class="btn subtle" id="registerBtn">Create Account</button>
+          </div>
+
+        </form>
+      </div>
+    </main>
+
+  </div>
+
+  <script type="module" src="js/app.js" defer></script>
+</body>
+</html>

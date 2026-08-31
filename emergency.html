@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZoomiBudgets • Emergency Fund</title>
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+
+    <header class="topbar">
+      <div class="topbar-left">
+<div class="brand-mark">
+  <img src="assets/logo.png" alt="ZoomiBudgets logo" class="brand-logo" />
+</div>
+<div class="brand-title">
+  <div class="brand-title-main">ZoomiBudgets</div>
+          <div class="brand-title-sub">Emergency Fund</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="menu-toggle">
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <aside id="sidebar"></aside>
+
+    <main class="app-main">
+      <div class="page">
+
+        <div class="page-header">
+          <div class="page-kicker">Safety Net</div>
+          <h1 class="page-title">Emergency Fund Planner</h1>
+          <p class="subtitle" id="emergencyTip"></p>
+        </div>
+
+        <section class="section card">
+          <div class="card-header">
+            <div>
+              <div class="card-label">Plan</div>
+              <div class="card-title">Set a Target</div>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div>
+              <label>Monthly essentials (rent, food, etc.)</label>
+              <input type="number" id="emCost" placeholder="e.g., 900" />
+            </div>
+            <div>
+              <label>Months of safety you want</label>
+              <input type="number" id="emMonths" placeholder="e.g., 3" />
+            </div>
+            <div>
+              <button class="btn primary" id="calcEmergency" type="button">
+                Calculate Target
+              </button>
+            </div>
+          </div>
+
+          <div class="section" id="emergency-output"></div>
+        </section>
+
+        <section class="section card">
+          <div class="card-header">
+            <div>
+              <div class="card-label">Ideas</div>
+              <div class="card-title">Tips for Building It</div>
+            </div>
+          </div>
+          <ul class="bulleted" id="emergency-tips"></ul>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="js/app.js" defer></script>
+</body>
+</html>

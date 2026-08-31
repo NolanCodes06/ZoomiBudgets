@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZoomiBudgets • Categories</title>
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+
+    <header class="topbar">
+      <div class="topbar-left">
+<div class="brand-mark">
+  <img src="assets/logo.png" alt="ZoomiBudgets logo" class="brand-logo" />
+</div>
+<div class="brand-title">
+  <div class="brand-title-main">ZoomiBudgets</div>
+          <div class="brand-title-sub">Categories</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="menu-toggle">
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <aside id="sidebar"></aside>
+
+    <main class="app-main">
+      <div class="page">
+
+        <div class="page-header">
+          <div class="page-kicker">Structure</div>
+          <h1 class="page-title">Spending Categories</h1>
+          <p class="subtitle">Customize how your money is grouped. This powers your charts and reports.</p>
+        </div>
+
+        <section class="section card">
+          <div class="card-header">
+            <div>
+              <div class="card-label">Defaults</div>
+              <div class="card-title">Seed Popular Categories</div>
+            </div>
+          </div>
+          <p class="subtitle">
+            Use this if you're not sure where to start. We'll add typical student-friendly categories like Rent, Food, Subscriptions, and more.
+          </p>
+          <button class="btn subtle" id="seedCategoriesBtn" type="button">
+            Add Default Categories
+          </button>
+        </section>
+
+        <section class="section card">
+          <div class="card-header">
+            <div>
+              <div class="card-label">Custom</div>
+              <div class="card-title">Add a New Category</div>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div>
+              <label>Category Name</label>
+              <input type="text" id="catName" placeholder="e.g., Coffee" />
+            </div>
+            <div>
+              <label>Color</label>
+              <input type="color" id="catColor" value="#22c55e" />
+            </div>
+            <div>
+              <button class="btn primary" id="addCategoryBtn" type="button">
+                Add Category
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="section card">
+          <div class="card-header">
+            <div>
+              <div class="card-label">Your Map</div>
+              <div class="card-title">Current Categories</div>
+            </div>
+          </div>
+          <div id="category-list"></div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="js/app.js" defer></script>
+</body>
+</html>

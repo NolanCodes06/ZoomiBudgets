@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZoomiBudgets • Survey</title>
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+
+    <header class="topbar">
+      <div class="topbar-left">
+<div class="brand-mark">
+  <img src="assets/logo.png" alt="ZoomiBudgets logo" class="brand-logo" />
+</div>
+<div class="brand-title">
+  <div class="brand-title-main">ZoomiBudgets</div>
+          <div class="brand-title-sub">Starter Survey</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="menu-toggle">
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <aside id="sidebar"></aside>
+
+    <main class="app-main">
+      <div class="page">
+
+        <div class="page-header">
+          <div class="page-kicker">Setup</div>
+          <h1 class="page-title">Starter Survey</h1>
+          <p class="subtitle" id="surveyTip"></p>
+        </div>
+
+        <section class="section card">
+          <div class="card-header">
+            <div>
+              <div class="card-label">Build Your First Plan</div>
+              <div class="card-title">Tell Us How You Spend</div>
+            </div>
+          </div>
+
+          <form id="survey-form">
+            <div class="form-grid">
+              <div>
+                <label>Estimated monthly income</label>
+                <input type="number" name="income" placeholder="e.g., 1200" />
+              </div>
+              <div>
+                <label>Monthly rent / housing</label>
+                <input type="number" name="rent" placeholder="e.g., 600" />
+              </div>
+              <div>
+                <label>Transportation per month</label>
+                <input type="number" name="transport" placeholder="e.g., 80" />
+              </div>
+            </div>
+
+            <div class="section">
+              <label>How often do you eat out or DoorDash?</label>
+              <select name="food">
+                <option value="low">Not much (I cook / use meal plan)</option>
+                <option value="medium">Somewhat often</option>
+                <option value="high">A lot (several times a week)</option>
+              </select>
+            </div>
+
+            <div class="section">
+              <label>How social is your month (clubs, games, going out)?</label>
+              <select name="social">
+                <option value="low">Pretty chill</option>
+                <option value="medium">Somewhere in the middle</option>
+                <option value="high">Very active / out often</option>
+              </select>
+            </div>
+
+            <div class="section">
+              <label>How many subscriptions do you have?</label>
+              <select name="subs">
+                <option value="none">Almost none</option>
+                <option value="few">A few (Netflix, Spotify, etc.)</option>
+                <option value="many">A lot</option>
+              </select>
+            </div>
+
+            <div class="section">
+              <label>How much of a "saver" are you?</label>
+              <select name="saver">
+                <option value="no">Not really</option>
+                <option value="sometimes">Sometimes</option>
+                <option value="yes">Yes, I like saving</option>
+              </select>
+            </div>
+
+            <div class="section">
+              <label>What's your #1 priority right now?</label>
+              <select name="priority">
+                <option value="emergency">Build an emergency fund</option>
+                <option value="debt">Pay down debt / cards</option>
+                <option value="fun">Have more fun money</option>
+                <option value="balance">Balance everything</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn primary" style="margin-top:.8rem;">Build Starter Plan</button>
+          </form>
+
+          <div class="section" id="survey-output"></div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="js/app.js" defer></script>
+</body>
+</html>

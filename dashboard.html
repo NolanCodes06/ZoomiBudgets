@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZoomiBudgets • Dashboard</title>
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <!-- Chart.js for pie charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+
+    <header class="topbar">
+      <div class="topbar-left">
+<div class="brand-mark">
+  <img src="assets/logo.png" alt="ZoomiBudgets logo" class="brand-logo" />
+</div>
+<div class="brand-title">
+  <div class="brand-title-main">ZoomiBudgets</div>
+          <div class="brand-title-sub">Dashboard</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="menu-toggle">
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <aside id="sidebar"></aside>
+
+    <main class="app-main">
+      <div class="page">
+
+        <div class="page-header">
+          <div class="page-kicker">Overview</div>
+          <h1 class="page-title">Dashboard</h1>
+          <p class="subtitle" id="dashboardTip"></p>
+        </div>
+
+        <!-- Top summary cards -->
+        <section class="section">
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-label">Monthly Snapshot</div>
+                  <div class="card-title">Cashflow</div>
+                </div>
+              </div>
+
+              <div class="stats-grid">
+                <div class="list-item">
+                  <div>
+                    <div class="subtitle">Income</div>
+                    <div class="money-blur" id="dashTotalIncome">$0.00</div>
+                  </div>
+                </div>
+                <div class="list-item">
+                  <div>
+                    <div class="subtitle">Expenses</div>
+                    <div class="money-blur" id="dashTotalExpenses">$0.00</div>
+                  </div>
+                </div>
+                <div class="list-item">
+                  <div>
+                    <div class="subtitle">Net per Month</div>
+                    <div class="money-blur" id="dashNetBalance">$0.00</div>
+                  </div>
+                </div>
+                <div class="list-item">
+                  <div>
+                    <div class="subtitle">Savings Rate</div>
+                    <div id="dashSavingsRate">0%</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-label">Progress</div>
+                  <div class="card-title">Level & XP</div>
+                </div>
+              </div>
+              <div id="dashXPOverview"></div>
+              <div class="section" id="dashAchievements"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Needs vs Wants + Emergency & semester -->
+        <section class="section grid-2">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-label">Spending Style</div>
+                <div class="card-title">Needs vs Wants</div>
+              </div>
+            </div>
+            <p class="subtitle" id="dashNeedsWants"></p>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-label">Safety Net</div>
+                <div class="card-title">Emergency & Semester Costs</div>
+              </div>
+            </div>
+            <div class="stats-grid">
+              <div class="list-item">
+                <div>
+                  <div class="subtitle">Emergency Goal</div>
+                  <div class="money-blur" id="dashEmergencyGoal">$0.00</div>
+                </div>
+              </div>
+              <div class="list-item">
+                <div>
+                  <div class="subtitle">Emergency Saved</div>
+                  <div class="money-blur" id="dashEmergencySaved">$0.00</div>
+                </div>
+              </div>
+              <div class="list-item">
+                <div>
+                  <div class="subtitle">Emergency Progress</div>
+                  <div id="dashEmergencyPercent">0%</div>
+                </div>
+              </div>
+              <div class="list-item">
+                <div>
+                  <div class="subtitle">Semester Cost</div>
+                  <div class="money-blur" id="dashSemesterTotal">$0.00</div>
+                </div>
+              </div>
+              <div class="list-item">
+                <div>
+                  <div class="subtitle">Subscriptions / Month</div>
+                  <div class="money-blur" id="dashSubsMonthly">$0.00</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Chart + calendar -->
+        <section class="section grid-2">
+          <div class="chart-card" id="chartContainer">
+            <div class="card-header">
+              <div>
+                <div class="card-label">Spending Map</div>
+                <div class="card-title">Category Pie Chart</div>
+              </div>
+            </div>
+            <canvas id="pieChart" height="200"></canvas>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-label">Upcoming Cashflow</div>
+                <div class="card-title">Bills & Renewals</div>
+              </div>
+            </div>
+            <div id="dashCalendar"></div>
+          </div>
+        </section>
+
+        <!-- Daily and weekly challenges -->
+        <section class="section grid-2">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-label">Today</div>
+                <div class="card-title">Daily Challenge</div>
+              </div>
+            </div>
+            <div id="dailyChallengeSummary"></div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-label">This Week</div>
+                <div class="card-title">Weekly Challenge</div>
+              </div>
+            </div>
+            <div id="weeklyChallengeSummary"></div>
+          </div>
+        </section>
+
+        <!-- What-if + export -->
+        <section class="section grid-2">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-label">Sandbox</div>
+                <div class="card-title">"What If I Changed..."</div>
+              </div>
+            </div>
+            <label>Cut food spending each month by:</label>
+            <input type="number" id="whatIfCutFood" placeholder="e.g., 50" />
+
+            <label>Cancel one subscription:</label>
+            <select id="whatIfCancelSub"></select>
+
+            <button class="btn subtle" id="whatIfRun">Run Simulation</button>
+
+            <div class="section" id="whatIfOutput"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-label">Export</div>
+                <div class="card-title">Download Your Data</div>
+              </div>
+            </div>
+            <p class="subtitle">
+              You can export your progress to use in another app, share with a partner, or just back it up.
+            </p>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.4rem;">
+              <button class="btn subtle" id="exportJsonBtn">Export JSON</button>
+              <button class="btn subtle" id="exportCsvBtn">Export CSV</button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="js/app.js" defer></script>
+</body>
+</html>

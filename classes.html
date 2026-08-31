@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZoomiBudgets • Class Costs</title>
+  <link rel="icon" href="assets/logo.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+
+    <header class="topbar">
+      <div class="topbar-left">
+<div class="brand-mark">
+  <img src="assets/logo.png" alt="ZoomiBudgets logo" class="brand-logo" />
+</div>
+<div class="brand-title">
+  <div class="brand-title-main">ZoomiBudgets</div>
+          <div class="brand-title-sub">Class Costs</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="menu-toggle">
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <aside id="sidebar"></aside>
+
+    <main class="app-main">
+      <div class="page">
+
+        <div class="page-header">
+          <div class="page-kicker">Semester</div>
+          <h1 class="page-title">Course Expenses</h1>
+          <p class="subtitle">Textbooks, supplies, and "hidden" course costs all in one place.</p>
+        </div>
+
+        <section class="section card">
+          <div class="card-header">
+            <div>
+              <div class="card-label">Track a Class</div>
+              <div class="card-title">Add Course Costs</div>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div>
+              <label>Course Name</label>
+              <input type="text" id="className" placeholder="e.g., CS 1083" />
+            </div>
+            <div>
+              <label>Textbook</label>
+              <input type="number" id="classText" placeholder="e.g., 120" />
+            </div>
+            <div>
+              <label>Supplies</label>
+              <input type="number" id="classSupplies" placeholder="e.g., 30" />
+            </div>
+            <div>
+              <label>Other</label>
+              <input type="number" id="classOther" placeholder="e.g., 15" />
+            </div>
+            <div>
+              <button class="btn primary" id="addClassBtn" type="button">
+                Add Class
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="section card">
+          <div class="card-header">
+            <div>
+              <div class="card-label">Overview</div>
+              <div class="card-title">This Semester's Cost</div>
+            </div>
+          </div>
+          <div id="classes-list"></div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="js/app.js" defer></script>
+</body>
+</html>
