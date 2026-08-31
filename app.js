@@ -1,4 +1,4 @@
-// ZoomiBudgets_Beta_V2 core logic – gamified + achievements + export/import
+// ZoomiBudgets_Beta_V2 core logic: gamified + achievements + export/import
 const App = (() => {
   const USERS_KEY = "zoomi.v2.users";
   const CURRENT_KEY = "zoomi.v2.current";
@@ -621,47 +621,47 @@ const App = (() => {
       tips.push("Lower housing costs let you lean into savings or food quality.");
     } else if (responses.housingType === "solo") {
       targets.rent = 35;
-      tips.push("Living alone → keep rent under control to protect everything else.");
+      tips.push("Living alone: keep rent under control to protect everything else.");
     }
 
     if (responses.workType === "none") {
       targets.savings = Math.min(targets.savings, 15);
-      tips.push("No job right now → focus on survival categories first.");
+      tips.push("No job right now: focus on survival categories first.");
     } else if (responses.workType === "full") {
       targets.savings = 25;
-      tips.push("Full-time work → you can push savings higher if you choose.");
+      tips.push("Full-time work: you can push savings higher if you choose.");
     }
 
     if (responses.savingsPriority === "high") {
       targets.savings = Math.max(targets.savings, 25);
       name = "Safety-first plan";
-      tips.push("High savings priority → treat savings as a non-negotiable bill.");
+      tips.push("High savings priority: treat savings as a non-negotiable bill.");
     } else if (responses.savingsPriority === "low") {
       targets.savings = 10;
       name = "Survival mode plan";
-      tips.push("Low savings priority → at least 5–10% keeps future-you slightly safer.");
+      tips.push("Low savings priority: at least 5-10% keeps future-you slightly safer.");
     }
 
     if (responses.debtLevel === "heavy") {
       targets.subscriptions = 3;
       targets.entertainment = Math.min(targets.entertainment, 8);
       targets.savings = Math.max(targets.savings, 20);
-      tips.push("Heavy debt → trim subscriptions/going out, protect savings for emergencies.");
+      tips.push("Heavy debt: trim subscriptions/going out, protect savings for emergencies.");
     }
 
     if (responses.lifestyle === "frugal") {
       targets.food = 13;
       targets.entertainment = 7;
-      tips.push("Frugal lifestyle → your secret weapon is already there. Keep it up.");
+      tips.push("Frugal lifestyle: your secret weapon is already there. Keep it up.");
     } else if (responses.lifestyle === "social") {
       targets.food = 18;
       targets.entertainment = 15;
-      tips.push("Very social → consider setting a weekly cap for food/going out.");
+      tips.push("Very social: consider setting a weekly cap for food/going out.");
     }
 
     if (responses.selfCare === "high") {
       targets.entertainment = Math.max(targets.entertainment, 12);
-      tips.push("Self-care is important → just keep it inside a planned slice.");
+      tips.push("Self-care is important: just keep it inside a planned slice.");
     }
 
     const sum = Object.values(targets).reduce((a, b) => a + b, 0);
@@ -989,7 +989,7 @@ const App = (() => {
       });
       if (!alerts.length) {
         const li = document.createElement("li");
-        li.textContent = "No alerts yet – you’re within all planned slices.";
+        li.textContent = "No alerts yet. You're within all planned slices.";
         alertsEl.appendChild(li);
       } else {
         alerts.forEach((a) => {
@@ -1102,13 +1102,13 @@ const App = (() => {
         if (list.length === 0) {
           msg = "No data yet. Your only mission right now is to start logging a few transactions.";
         } else if (score >= 85) {
-          msg = "You’re dialed in. Your spending is hugging your plan – this is where calm lives.";
+          msg = "You're dialed in. Your spending is hugging your plan. This is where calm lives.";
         } else if (score >= 65) {
-          msg = "You’re close. A few tweaks (usually food, rides, or subscriptions) could bump this higher.";
+          msg = "You're close. A few tweaks (usually food, rides, or subscriptions) could bump this higher.";
         } else if (score >= 40) {
-          msg = "You’re in the messy middle. That’s normal – your future self will thank you for even looking.";
+          msg = "You're in the messy middle. That's normal, and your future self will thank you for even looking.";
         } else {
-          msg = "Right now, the numbers are yelling. That’s okay. Use alerts to pick one category to fix first.";
+          msg = "Right now, the numbers are yelling. That's okay. Use alerts to pick one category to fix first.";
         }
         scoreTextEl.textContent = msg;
       }
