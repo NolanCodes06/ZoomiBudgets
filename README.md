@@ -4,8 +4,9 @@ A budgeting app for students that runs entirely in your browser. No server, no
 database, no bank connections. Everything saves to localStorage on your own
 machine.
 
-I built this from scratch as a final project my freshman year at UTSA. HTML,
-CSS, and vanilla JavaScript, with Chart.js for the graphs.
+I built this for a group final project my freshman year at UTSA. I wrote the
+application; my teammates worked on the proposal and the presentation. HTML, CSS,
+and vanilla JavaScript, with Chart.js for the graphs.
 
 ## Running it
 
