@@ -1,195 +1,83 @@
 # ZoomiBudgets
-ZoomiBudgets_Beta_V2
-A gamified, student-friendly budgeting system built with HTML, CSS, and JavaScript.
 
-ZoomiBudgets_Beta_V2 is a local-only budgeting platform designed for students learning financial literacy, money management, and habit-building.
-Everything runs 100% in the browser using localStorage — no servers, no databases, no bank connections.
+A budgeting app for students that runs entirely in your browser. No server, no
+database, no bank connections. Everything saves to localStorage on your own
+machine.
 
-It blends clean UI, gamified features, and intuitive financial tools, making budgeting feel less stressful and more like a game.
+I built this from scratch as a final project my freshman year at UTSA. HTML,
+CSS, and vanilla JavaScript, with Chart.js for the graphs.
 
-🚀 Features
-🔐 Local Account System
+## Running it
 
-Create/login accounts (stored locally in localStorage)
+Easiest way is to serve the folder locally:
 
-Passwords are hashed using Web Crypto API (fallback included)
-
-User data is synced across every page
-
-📊 Dashboard – “Budgeting as a Game”
-
-Fully adaptive pie charts (Chart.js)
-
-Color-coded categories (user-customizable)
-
-Monthly transaction summary
-
-Spending alerts (approaching or exceeding budget)
-
-Savings goals overview
-
-Upcoming bills (next 14 days)
-
-Personalized survey plan visualization
-
-Budget Score (0–100) based on performance & habits
-
-💸 Budgeting Tools
-
-Monthly income planner
-
-Category-based expense planning
-
-Custom categories with custom colors
-
-Add/edit/remove transactions
-
-Monthly & yearly spending tracking
-
-Bills + reminder system
-
-Savings goals tracker
-
-Net worth snapshot
-
-🎯 Personalized Budget Survey
-
-A deeper survey that gives:
-
-A personalized financial plan
-
-Recommended spending percentages
-
-Savings and lifestyle tips
-
-“Where you can save more” advice
-
-Auto-scroll output for a smoother experience
-
-🎨 UI & Experience
-
-Modern, clean, blurred-gradient styling
-
-Light/Dark mode toggle
-
-Right-side sliding navigation drawer
-
-Persistent theme settings
-
-Responsive layout
-
-🧠 Why this project?
-
-ZoomiBudgets is designed for:
-
-Students learning how to manage money for the first time
-
-Classes teaching budgeting in a hands-on way
-
-Anyone wanting a safe practice environment without real financial risk
-
-It is purposely local-first so students can experiment without connecting any real accounts.
-
-🛠️ Tech Stack
-Area	Tech
-UI	HTML, CSS (custom design, responsive)
-Logic	Vanilla JavaScript
-Charts	Chart.js
-Storage	localStorage
-Security	SHA-256 password hashing (WebCrypto API)
-Data Persistence	Fully local, no backend
-📁 Project Structure
-ZoomiBudgets_Beta_V2/
-│── index.html
-│── login.html
-│── budget.html
-│── survey.html
-│── dashboard.html
-│── about.html
-│
-├── css/
-│   └── styles.css
-│
-├── js/
-│   └── app.js
-│
-└── README.md
-📦 Installation
-
-You can run this directly on your computer — no server required.
-
-Option 1: Open in Browser
-
-Download the project folder
-
-Open index.html OR login.html in Chrome, Firefox, Edge, etc.
-
-Option 2: Run a Local Host (recommended)
-
-Run this in the project folder:
-
-Windows PowerShell
+```
 python -m http.server 8080
-Mac/Linux
-python3 -m http.server 8080
-Then visit:
-http://localhost:8080/login.html
-This also enables secure hashing (crypto.subtle) and prevents redirect issues.
+```
 
-🔧 How Data Is Stored
+Then open http://localhost:8080/login.html
 
-All content is saved locally using keys like:
+You can open `login.html` directly from the file system too, but serving it over
+localhost makes the browser's crypto API available, which the password hashing
+needs.
 
-Key	Description
-zoomi.v2.users	All user accounts + saved data
-zoomi.v2.current	Currently logged-in user
-zoomi.v2.theme	Light/Dark mode
-(more keys inside local state)	
-This keeps everything private and offline.
+## What it does
 
-🎮 Gamification Elements
+You make a local account, set a monthly income, and split it into categories you
+define yourself. From there:
 
-Budgeting Score (0–100)
+- A dashboard with pie charts of where your money is going, plus alerts when
+  you're close to or over a category budget
+- Transactions, bills with a 14 day lookahead, and savings goals
+- A budget score from 0 to 100 based on how you're tracking
+- A survey that generates a suggested spending breakdown and some advice
+- Light and dark mode
 
-Spending alerts & warnings
+The gamified part is mostly the score and the progress bars. The idea was that
+budgeting is boring and a number going up is less boring.
 
-Progress bars for goals
+## How data is stored
 
-Color customization
+Everything lives in localStorage under keys prefixed `zoomi.v2`:
 
-Encouraging messages based on performance
+| Key | Holds |
+|---|---|
+| `zoomi.v2.users` | accounts and their saved data |
+| `zoomi.v2.current` | who is logged in |
+| `zoomi.v2.theme` | light or dark |
 
-“First transaction of the month” and “Daily activity streak” foundation (streak in progress)
+Nothing is sent anywhere. Clearing your browser data wipes it.
 
-📈 Roadmap / Future Plans
-Planned for V3
+## About the login system
 
-Account streaks system
+Worth being upfront about this one. Accounts live in localStorage and passwords
+are hashed with SHA-256 through the Web Crypto API.
 
-Achievements & badges
+That is not how you would build auth in a real application. SHA-256 is fast,
+which is the opposite of what you want for password hashing, and anything in
+localStorage can be read by any script running on the page. A real version needs
+a server, a slow hash like bcrypt or Argon2, and a session token.
 
-Weekly habit view
+I did it this way because the assignment required it run with no backend, and
+because I wanted to understand what a login actually does before reaching for a
+library. Writing the tradeoff down here rather than quietly hoping nobody looks.
 
-Export/import user data
+Don't put real banking details in this. It's a learning project.
 
-Minimal backend mode (Firebase or Supabase optional)
+## Files
 
-Social version for group/class comparison
+```
+index.html      landing page
+login.html      sign in and account creation
+budget.html     income and category planning
+survey.html     the questionnaire
+dashboard.html  charts and summary
+about.html
+styles.css
+app.js          all the logic
+```
 
-Financial education mini-modules
+## Things I'd add
 
-🧑‍💻 Contributing
-
-This project is student-focused, but contributions, ideas, and improvements are welcome.
-Fork it, submit PRs, or open issues with suggestions.
-
-🛡️ Security Disclaimer
-
-ZoomiBudgets is not meant for real banking credentials.
-Passwords are hashed, but your data stays on your device only.
-For educational use only.
-
-❤️ Credits
-
-Created for students learning budgeting, spending awareness, and financial responsibility.
-Built with love, clean code, and way too many late-night redesigns.
+Streaks, data export, and a weekly view. Possibly a real backend, which would
+let me fix the auth properly.
