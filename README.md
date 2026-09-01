@@ -9,12 +9,12 @@ machine.
 This is the build I kept working on after the class was over. The original was a
 group final project my freshman year at UTSA, where I wrote the application and
 my teammates handled the proposal and the presentation. That version is on the
-`group-build` branch. This one is mine, and it is roughly twice the code.
+`group-build` branch. This one is mine, and it's roughly twice the code.
 
 The idea I was chasing: budgeting is boring, and the apps that exist assume you
 have a salary and a mortgage. A college student has a shift schedule, textbook
 costs, four subscriptions they forgot about, and a month where rent lands before
-the paycheck. So the app is built around that, and there is a level and an XP
+the paycheck. So the app is built around that, with a level and an XP
 bar to make opening it feel less like a chore.
 
 ## Running it
@@ -61,7 +61,7 @@ expense is 50, any expense after that is 10, setting an emergency fund target is
 There are 7 achievements right now: first expense, ten expenses, expenses
 spanning 30 days, emergency fund set, survey completed, and 3 and 7 day streaks.
 
-None of this is deep. It is a progress bar and a number going up. That was the
+None of this is deep. It's a progress bar and a number going up. That was the
 whole point, because a budget you never open does nothing.
 
 There is also a "blur money" toggle that hides every dollar figure on the page,
@@ -82,7 +82,7 @@ Nothing is sent anywhere. Clearing your browser data wipes all of it.
 
 ## About the login system
 
-Same caveat as the earlier version, plus one more that is worse.
+Same caveat as the earlier version, plus one more that's worse.
 
 Accounts live in localStorage and passwords are hashed with SHA-256 through the
 Web Crypto API. SHA-256 is fast, which is the opposite of what you want for
@@ -92,14 +92,14 @@ session token.
 
 The extra problem: Web Crypto only exists in a secure context. Open the app off
 the file system and `crypto.subtle` is not there, so the code falls back to a
-hash function I wrote that is not cryptographically anything. It exists so the
-demo does not break. It is not security.
+hash function I wrote that isn't cryptographically anything. It's there so the
+demo doesn't break. It isn't security.
 
 I built it this way because the assignment required it run with no backend, and
 because I wanted to understand what a login actually does before reaching for a
 library. Writing the tradeoff down here rather than quietly hoping nobody looks.
 
-Do not put real banking details in this. It is a learning project.
+Don't put real banking details in this. It's a learning project.
 
 ## Files
 
@@ -130,5 +130,5 @@ assets/logo.png
 ## Things I'd add
 
 More achievements, a weekly view, data export, and a real backend, which would
-let me fix the auth properly instead of writing a section explaining why it is
+let me fix the auth properly instead of writing a section explaining why it's
 broken.

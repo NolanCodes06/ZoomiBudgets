@@ -430,8 +430,8 @@ function initMenuToggle() {
 
 // --------------------------- XP & Level System -----------------------
 //
-// XP = your experience points from doing “good money moves”.
-// Level = your “budget level” (soft flex, no pressure).
+// XP = your experience points from doing "good money moves".
+// Level = your "budget level" (soft flex, no pressure).
 //
 // XP events (examples):
 // - Complete survey: +100 XP
@@ -459,7 +459,7 @@ function grantXP(state, amount, reason) {
     leveled = true;
   }
 
-  // If there’s a place to show last event, we could store it here.
+  // If there's a place to show last event, we could store it here.
   // For now we just keep it server-side and show on dashboard summary.
   s.lastXpEvent = {
     amount,
@@ -486,7 +486,7 @@ const ACHIEVEMENT_DEFS = [
   },
   {
     id: "ten-expenses",
-    name: "You’re Actually Doing It",
+    name: "You're Actually Doing It",
     desc: "Logged 10 or more expenses.",
     check: (s) => (s.transactions || []).length >= 10
   },
@@ -563,7 +563,7 @@ function renderAchievements() {
   if (summaryEl) {
     summaryEl.innerHTML = `
       <p class="subtitle">
-        You’ve unlocked <strong>${unlockedIds.length}</strong> of <strong>${ACHIEVEMENT_DEFS.length}</strong> achievements so far.
+        You've unlocked <strong>${unlockedIds.length}</strong> of <strong>${ACHIEVEMENT_DEFS.length}</strong> achievements so far.
       </p>
     `;
   }
@@ -591,10 +591,10 @@ function renderAchievements() {
 // ----------------------------- Challenges ----------------------------
 //
 // Daily Challenge Example:
-// - “Log 3 expenses today”
+// - "Log 3 expenses today"
 //
 // Weekly Challenge Example:
-// - “Keep wants below 30% of your spending this week”
+// - "Keep wants below 30% of your spending this week"
 //
 // Stored in state.challenges.daily / weekly
 // ---------------------------------------------------------------------
@@ -721,7 +721,7 @@ function renderChallengesSummary() {
     const remaining = clamp(d.targetLog - d.logExpenseCount, 0, d.targetLog);
     dailyEl.innerHTML = d.completed
       ? `<p class="subtitle">Daily challenge: <strong>COMPLETE ✅</strong><br>Nice. You logged at least ${d.targetLog} expenses today.</p>`
-      : `<p class="subtitle">Daily challenge: <strong>Log ${d.targetLog} expenses today</strong><br>You’ve logged ${d.logExpenseCount}. ${remaining} to go.</p>`;
+      : `<p class="subtitle">Daily challenge: <strong>Log ${d.targetLog} expenses today</strong><br>You've logged ${d.logExpenseCount}. ${remaining} to go.</p>`;
   }
 
   if (weeklyEl) {
@@ -749,10 +749,10 @@ function renderChallengesSummary() {
     const pct = total > 0 ? (ratio * 100).toFixed(1) : "0";
 
     weeklyEl.innerHTML = w.completed
-      ? `<p class="subtitle">Weekly challenge: <strong>COMPLETE ✅</strong><br>Your “wants” stayed under ${Math.round(
+      ? `<p class="subtitle">Weekly challenge: <strong>COMPLETE ✅</strong><br>Your "wants" stayed under ${Math.round(
           w.wantsLimitRatio * 100
         )}% of your spending this week.</p>`
-      : `<p class="subtitle">Weekly challenge: Keep “wants” at or below <strong>${Math.round(
+      : `<p class="subtitle">Weekly challenge: Keep "wants" at or below <strong>${Math.round(
           w.wantsLimitRatio * 100
         )}%</strong> of your spending this week.<br>Right now you're at about ${pct}%.</p>`;
   }
@@ -836,7 +836,7 @@ function initDashboardPage() {
   const tip = qs("#dashboardTip");
   if (tip) {
     tip.textContent =
-      "Think of this as your mini command center. If the net goes negative for months in a row, it’s time to tweak the plan.";
+      "Think of this as your mini command center. If the net goes negative for months in a row, it's time to tweak the plan.";
   }
 
   const income = Number(state.monthlyIncome || 0);
@@ -915,7 +915,7 @@ function initDashboardPage() {
           )
         : 0;
     xpBox.innerHTML = `
-      <p>You’re level <strong>${state.level}</strong> with <strong>${state.xp} XP</strong>.</p>
+      <p>You're level <strong>${state.level}</strong> with <strong>${state.xp} XP</strong>.</p>
       <p class="subtitle">About ${Math.max(
         0,
         nextLevelXP - state.xp
@@ -959,7 +959,7 @@ function renderSpendingPieChart(state) {
     const container = qs("#chartContainer");
     if (container) {
       container.innerHTML =
-        '<p class="subtitle">No spending yet. As soon as you log expenses, we’ll show a category pie chart here.</p>';
+        `<p class="subtitle">No spending yet. As soon as you log expenses, we'll show a category pie chart here.</p>`;
     }
     return;
   }
@@ -1116,11 +1116,11 @@ function initWhatIfSimulator(state, income, baseExpenses) {
     const newNet = income - newExpenses;
 
     out.innerHTML = `
-      <p>You’d save about <strong>${fmtCurrency(delta)}</strong> per month.</p>
+      <p>You'd save about <strong>${fmtCurrency(delta)}</strong> per month.</p>
       <p>Your new estimated net would be <strong>${fmtCurrency(
         newNet
       )}</strong> / month.</p>
-      <p class="subtitle" style="margin-top:.4rem;">This doesn’t change your actual plan - it’s just a sandbox to play with ideas.</p>
+      <p class="subtitle" style="margin-top:.4rem;">This doesn't change your actual plan - it's just a sandbox to play with ideas.</p>
     `;
   });
 }
@@ -1184,7 +1184,7 @@ function initExportsAndAchievements() {
       (id) => state.achievements[id]?.unlocked
     );
     dashAch.innerHTML = `
-      <p class="subtitle">You’ve unlocked <strong>${unlocked.length}</strong> of <strong>${ACHIEVEMENT_DEFS.length}</strong> achievements. Tap “Achievements” in the sidebar to see them.</p>
+      <p class="subtitle">You've unlocked <strong>${unlocked.length}</strong> of <strong>${ACHIEVEMENT_DEFS.length}</strong> achievements. Tap "Achievements" in the sidebar to see them.</p>
     `;
   }
 }
@@ -1216,7 +1216,7 @@ function initBudgetPage() {
   const tip = qs("#budgetTip");
   if (tip) {
     tip.textContent =
-      "Think of your budget as assigning “roles” to your dollars before the month even starts.";
+      `Think of your budget as assigning "roles" to your dollars before the month even starts.`;
   }
 
   // Planned amounts controls
@@ -1427,7 +1427,7 @@ function initSurveyPage() {
   const tip = qs("#surveyTip");
   if (tip) {
     tip.textContent =
-      "We’ll use your answers to build a starter budget. You can change everything later.";
+      "We'll use your answers to build a starter budget. You can change everything later.";
   }
 
   form.addEventListener("submit", (e) => {
@@ -1446,7 +1446,7 @@ function initSurveyPage() {
       return;
     }
 
-    // Baseline “envelopes” for categories (we’ll fill them in)
+    // Baseline "envelopes" for categories (we'll fill them in)
     const base = {
       "Rent / Housing": rent || income * 0.35,
       Transportation: transport || income * 0.1,
@@ -1885,7 +1885,7 @@ function initEmergencyPage() {
 
     if (tips) {
       tips.innerHTML = `
-        <li>Keep your emergency fund a little inconvenient to access so you don’t “accidentally” spend it.</li>
+        <li>Keep your emergency fund a little inconvenient to access so you don't "accidentally" spend it.</li>
         <li>Send unexpected money here first: refunds, gifts, side-gig income.</li>
         <li>Emergency = things like car repair, sudden medical, job loss-not concert tickets.</li>
       `;
